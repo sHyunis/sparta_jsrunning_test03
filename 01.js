@@ -9,13 +9,15 @@ function getData(url) {
     setTimeout(() => {
       if (url === API_URL) {
         resolve("성공");
+      } else {
+        reject("실패");
       }
     }, 3000);
   });
 }
 // getData(API_URL), getData(WRONG_URL) 각각 성공과 실패에 대한 처리를 코드작성해주세요.
 
-getData()
+getData(API_URL)
   .then((result) => {
     console.log(result);
   })

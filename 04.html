@@ -22,18 +22,19 @@
             },
         };
         // API_URL 과 options를 사용해 fetch 로 API 요청을 한 후, 해당 데이터를 통해 img 태그를 생성하여 주세요.
-        async function fetchData() {
-            const fetchData = await fetch(API_URL, options)
-                .then(res => res.json)
-                .then(data => {
-                    const imgUrl = data.url
-                    const imgContainer = document.getElementById('imageContainer')
-                    const imgs = imgUrl.document.createAttribute('img')
-                    imgContainer.appendChild(imgs)
-                })
-        }
 
-        fetchData()
+        // 답
+        fetch(API_URL, options)
+            .then(async (response) => {
+                const result = await response.json();
+                const catUrl = result[0].url;
+
+                const imageContainer = document.getElementById("imageContainer");
+                const imgTag = document.createElement("img");
+                imgTag.src = catUrl;
+                imageContainer.appendChild(imgTag);
+            })
+            .catch((e) => console.log("error", e));
     </script>
 </body>
 
